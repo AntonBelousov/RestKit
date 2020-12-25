@@ -24,11 +24,6 @@ Pod::Spec.new do |s|
     cs.dependency 'RestKit/CoreData'
   end
 
-  s.subspec 'AppExtension' do |ext|
-    ext.dependency 'RestKit/Core'
-    ext.pod_target_xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'APP_EXTENSION=1' }
-  end
-
   s.subspec 'ObjectMapping' do |os|
     os.source_files   = 'Code/ObjectMapping.h', 'Code/ObjectMapping/**/*'
     os.dependency       'RestKit/Support'

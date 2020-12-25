@@ -31,10 +31,6 @@
 // You can turn on ARC for only AFNetworking files by adding -fobjc-arc to the build phase for each of its files.
 #endif
 
-#if !defined(APP_EXTENSION)
-    #define APP_EXTENSION 0
-#endif
-
 typedef enum {
     AFRKOperationPausedState      = -1,
     AFRKOperationReadyState       = 1,
@@ -302,12 +298,10 @@ static BOOL AFRKSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
     }
     
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-#if !APP_EXTENSION
     if (_backgroundTaskIdentifier) {
         [[UIApplication sharedApplication] endBackgroundTask:_backgroundTaskIdentifier];
         _backgroundTaskIdentifier = UIBackgroundTaskInvalid;
     }
-#endif
 #endif
 }
 
@@ -365,7 +359,6 @@ static BOOL AFRKSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
 }
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-#if !APP_EXTENSION
 - (void)setShouldExecuteAsBackgroundTaskWithExpirationHandler:(void (^)(void))handler {
     [self.lock lock];
     if (!self.backgroundTaskIdentifier) {
@@ -388,7 +381,6 @@ static BOOL AFRKSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
     }
     [self.lock unlock];
 }
-#endif
 #endif
 
 - (void)setUploadProgressBlock:(void (^)(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite))block {

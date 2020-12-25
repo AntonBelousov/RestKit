@@ -24,10 +24,6 @@
 
 #import "AFRKHTTPRequestOperation.h"
 
-#if !defined(APP_EXTENSION)
-    #define APP_EXTENSION 0
-#endif
-
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 static NSTimeInterval const kAFRKNetworkActivityIndicatorInvisibilityDelay = 0.17;
 
@@ -97,9 +93,7 @@ static NSTimeInterval const kAFRKNetworkActivityIndicatorInvisibilityDelay = 0.1
 }
 
 - (void)updateNetworkActivityIndicatorVisibility {
-#if !APP_EXTENSION
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:[self isNetworkActivityIndicatorVisible]];
-#endif
 }
 
 // Not exposed, but used if activityCount is set via KVC.
